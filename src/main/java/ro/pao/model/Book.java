@@ -17,7 +17,7 @@ import java.util.UUID;
 @EqualsAndHashCode
 @SuperBuilder(toBuilder = true)
 
-public class Book {
+public class Book implements Comparable<Book> {
 
     private UUID id;
     private String title;
@@ -28,4 +28,8 @@ public class Book {
     private List<Author> authors;
     private Integer copies;
 
+    @Override
+    public int compareTo(Book book) {
+        return publicationDate.compareTo(book.publicationDate);
+    }
 }

@@ -11,8 +11,7 @@ import ro.pao.service.impl.BookServiceImpl;
 import ro.pao.service.impl.MemberServiceImpl;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Menu {
 
@@ -331,6 +330,12 @@ public class Menu {
         bookService.getAllFromList()
                 .forEach(System.out::println);
 
+
+        System.out.println("\nSort book list by publication date:\n");
+        Collections.sort(bookService.getAllFromList());
+
+        bookService.getAllFromList()
+                .forEach(System.out :: println);
 
     }
 
