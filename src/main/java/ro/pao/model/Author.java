@@ -16,4 +16,9 @@ import java.util.List;
 
 public class Author extends GenericInfo {
     private List<Book> booksWritten;
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + super.toString();
+    }
 }

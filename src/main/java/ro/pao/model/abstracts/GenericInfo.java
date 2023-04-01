@@ -31,4 +31,9 @@ public abstract class GenericInfo {
         this.adress.setStreetNumber(streetNumber);
     }
 
+    @Override
+    public String toString() {
+        return "[Name = " + name + "]";
+    }
+
 }

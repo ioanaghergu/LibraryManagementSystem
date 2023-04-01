@@ -32,4 +32,16 @@ public class Book implements Comparable<Book> {
     public int compareTo(Book book) {
         return publicationDate.compareTo(book.publicationDate);
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[ Title = " + title + "\n" +
+                "Genre = " + genre + "\n" +
+                "Section = " + section + "\n" +
+                "Publisher = " + publisher + "\n" +
+                "Publication Date = " + publicationDate + "\n" +
+                "Number of copies = " + copies + "\n" +
+                "List of authors = " + authors + "] \n";
+    }
+
 }

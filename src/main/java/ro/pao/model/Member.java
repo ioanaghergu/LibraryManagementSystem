@@ -22,4 +22,12 @@ public class Member extends GenericInfo {
     private List<BookCopy> borrowedBooks;
     private List<BookCopy> returnedBooks;
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + super.toString() + "\n" +
+                "Member Type = " + memberType + "\n" +
+                "Borrowed Books = " + borrowedBooks + "\n" +
+                "Returned Books = " + returnedBooks + "] \n";
+    }
+
 }

@@ -22,4 +22,9 @@ public class BookCopy extends Book {
     private LocalDate dueDate;
     private LocalDate returnDate;
 
+    @Override
+    public String toString() {
+        return "Title = " + getTitle();
+    }
+
 }
