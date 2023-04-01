@@ -1,5 +1,6 @@
 package ro.pao.model;
 
+import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.GenericInfo;
 import ro.pao.model.abstracts.Location;
 import lombok.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@SuperBuilder(toBuilder = true)
 
 public class Publisher extends GenericInfo {
     private List<Book> publishedBooks;

@@ -1,5 +1,6 @@
 package ro.pao.model;
 
+import lombok.experimental.SuperBuilder;
 import ro.pao.model.enums.Genre;
 import ro.pao.model.enums.Section;
 import lombok.*;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+@SuperBuilder(toBuilder = true)
 
 public class Book {
 

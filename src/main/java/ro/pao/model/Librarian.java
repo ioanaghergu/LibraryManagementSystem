@@ -1,5 +1,6 @@
 package ro.pao.model;
 
+import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.GenericInfo;
 import lombok.*;
 
@@ -8,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@SuperBuilder(toBuilder = true)
 
 public class Librarian extends GenericInfo {
     private Double salary;

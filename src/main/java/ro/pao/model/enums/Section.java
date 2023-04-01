@@ -5,6 +5,7 @@ public enum Section {
     CLASSICS,
     CRIME,
     FANTASY,
+    FICTION,
     HISTORY,
     KIDS,
     MODERN_CLASSICS,
