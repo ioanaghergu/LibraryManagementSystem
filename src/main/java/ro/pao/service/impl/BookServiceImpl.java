@@ -59,4 +59,9 @@ public class BookServiceImpl implements BookService {
         addOnlyOne(book);
 
     }
+
+    @Override
+    public void addAllFromGivenList(List<Book> bookList) {
+        books.addAll(bookList);
+    }
 }

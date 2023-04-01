@@ -22,4 +22,6 @@ public interface BookService {
 
     void editBookById(UUID id, Book book);
 
+    void addAllFromGivenList(List<Book> bookList);
+
 }
