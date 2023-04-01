@@ -1,13 +1,13 @@
 package ro.pao.application;
 
-import ro.pao.model.Author;
-import ro.pao.model.BookCopy;
-import ro.pao.model.Member;
+import ro.pao.model.*;
 import ro.pao.model.enums.Genre;
 import ro.pao.model.enums.MemberType;
 import ro.pao.model.enums.Section;
 import ro.pao.model.enums.Status;
+import ro.pao.service.BookService;
 import ro.pao.service.MemberService;
+import ro.pao.service.impl.BookServiceImpl;
 import ro.pao.service.impl.MemberServiceImpl;
 
 import java.time.LocalDate;
@@ -19,6 +19,7 @@ public class Menu {
     private static Menu INSTANCE;
 
     private final MemberService memberService = new MemberServiceImpl();
+    private final BookService bookService = new BookServiceImpl();
 
     public static Menu getInstance() {
         return (INSTANCE == null ? new Menu() : INSTANCE);
@@ -159,6 +160,121 @@ public class Menu {
         memberService.getAllFromMap().
                 forEach((key, value) -> System.out.println(value));
 
+
+    }
+
+    public void introBook() {
+        String intro = "************************** DEMO FOR THE BOOK SERVICE INTERFACE **************************\n";
+
+        System.out.println(intro);
+
+        Author author = Author.builder()
+                .name("Leigh Bardugo")
+                .build();
+
+        Author author1 = Author.builder()
+                .name("Maggie Stiefvatter")
+                .build();
+
+        Author author2 = Author.builder()
+                .name("Cassandra Clare")
+                .build();
+
+        Author author3 = Author.builder()
+                .name("Holy Black")
+                .build();
+
+
+        Publisher publisher = Publisher.builder()
+                .id(UUID.randomUUID())
+                .name("RAO Publishing House")
+                .build();
+
+        Publisher publisher1 = Publisher.builder()
+                .id(UUID.randomUUID())
+                .name("Corint Publishing House")
+                .build();
+
+        Publisher publisher2 = Publisher.builder()
+                .id(UUID.randomUUID())
+                .name("Penguin Books")
+                .build();
+
+        /*
+        List<Book> books = List.of(
+                Book.builder()
+                        .id(UUID.randomUUID())
+                        .title("Six of crows")
+                        .genre(Genre.SCIENCE_FICTION)
+                        .section(Section.FICTION)
+                        .publisher(publisher)
+                        .publicationDate(LocalDate.of(2015, 8, 10))
+                        .authors(List.of(author, author2))
+                        .copies(3)
+                        .build(),
+
+                Book.builder()
+                        .id(UUID.randomUUID())
+                        .title("Six of crows")
+                        .genre(Genre.FANTASY)
+                        .section(Section.FICTION)
+                        .publisher(publisher1)
+                        .publicationDate(LocalDate.of(2017, 9, 20))
+                        .authors(List.of(author1, author3))
+                        .copies(7)
+                        .build(),
+
+                Book.builder()
+                        .id(UUID.randomUUID())
+                        .title("The cruel prince")
+                        .genre(Genre.HORROR)
+                        .section(Section.CRIME)
+                        .publisher(publisher2)
+                        .publicationDate(LocalDate.of(2018, 12, 7))
+                        .authors(List.of(author2, author3))
+                        .copies(10)
+                        .build(),
+
+                Book.builder()
+                        .id(UUID.randomUUID())
+                        .title("Milk and Honey")
+                        .genre(Genre.CONTEMPORARY)
+                        .section(Section.ART)
+                        .publisher(publisher1)
+                        .publicationDate(LocalDate.of(2017, 10, 15))
+                        .authors(List.of(author1, author))
+                        .copies(18)
+                        .build(),
+
+                Book.builder()
+                        .id(UUID.randomUUID())
+                        .title("The Raven King")
+                        .genre(Genre.YOUNG_ADULT)
+                        .section(Section.FICTION)
+                        .publisher(publisher2)
+                        .publicationDate(LocalDate.of(2020, 2, 19))
+                        .authors(List.of(author3))
+                        .copies(31)
+                        .build()
+        );
+
+        */
+
+        Book book = Book.builder()
+                .id(UUID.randomUUID())
+                .title("Six of crows")
+                .genre(Genre.ROMANCE)
+                .section(Section.CLASSICS)
+                .publisher(publisher)
+                .publicationDate(LocalDate.of(2019, 8, 21))
+                .authors(List.of(author2, author1))
+                .copies(19)
+                .build();
+
+        bookService.addOnlyOne(book);
+
+        System.out.println("\nGet by Title method:\n");
+        System.out.println(bookService.getByTitle(book.getTitle()));
 
     }
 

@@ -16,6 +16,8 @@ public class Main {
 
             menu.introMember();
 
+            menu.introBook();
+
             if ("exit".equals(scanner.next())) {
                 break;
             }
