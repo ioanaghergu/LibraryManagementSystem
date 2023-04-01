@@ -118,7 +118,13 @@ public class Menu {
                 .memberType(MemberType.STANDARD)
                 .build();
 
-        System.out.println("\nBefore update: \n");
+        System.out.println("""
+                                
+                Update member method:
+                                
+                Before:
+                """);
+
         System.out.println(member);
 
         memberService.editMemberById(member.getId(), member1);
@@ -200,7 +206,7 @@ public class Menu {
                 .name("Penguin Books")
                 .build();
 
-        /*
+
         List<Book> books = List.of(
                 Book.builder()
                         .id(UUID.randomUUID())
@@ -258,7 +264,6 @@ public class Menu {
                         .build()
         );
 
-        */
 
         Book book = Book.builder()
                 .id(UUID.randomUUID())
@@ -275,6 +280,57 @@ public class Menu {
 
         System.out.println("\nGet by Title method:\n");
         System.out.println(bookService.getByTitle(book.getTitle()));
+
+        System.out.println("\nGet all books from list method:\n");
+        bookService.getAllFromList()
+                .forEach(System.out::println);
+
+        System.out.println("\nAdd all books from given list method:\n");
+        bookService.addAllFromGivenList(books);
+
+        bookService.getAllFromList()
+                .forEach(System.out::println);
+
+        System.out.println("\nSearch books by title method:\n");
+        bookService.getAllByTitle("Six of crows")
+                .forEach(System.out::println);
+
+
+        System.out.println("""
+                                
+                Update book method:
+                                
+                Before:
+                """);
+
+        System.out.println(book);
+
+        Book book1 = Book.builder()
+                .id(book.getId())
+                .title("Siege and storm")
+                .build();
+
+        bookService.editBookById(book.getId(), book1);
+
+        System.out.println("\nAfter:\n");
+        System.out.println(bookService.getByID(book1.getId()));
+
+        System.out.println("""
+                                
+                Delete book method:
+                                
+                Before:
+                """);
+
+        bookService.getAllFromList()
+                .forEach(System.out::println);
+
+        System.out.println("\nAfter:\n");
+
+        bookService.removeBookById(book1.getId());
+        bookService.getAllFromList()
+                .forEach(System.out::println);
+
 
     }
 
