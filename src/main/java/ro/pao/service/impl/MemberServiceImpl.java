@@ -5,7 +5,10 @@ import lombok.NoArgsConstructor;
 import ro.pao.model.Member;
 import ro.pao.service.MemberService;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
@@ -45,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
         memberList = memberList.entrySet()
                 .stream()
                 .filter(member -> !id.equals(member.getKey()))
-                .collect(Collectors.toMap(Map.Entry:: getKey, Map.Entry :: getValue));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     @Override

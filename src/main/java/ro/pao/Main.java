@@ -1,9 +1,6 @@
 package ro.pao;
 
 import ro.pao.application.Menu;
-import ro.pao.model.Author;
-import ro.pao.model.abstracts.GenericInfo;
-import ro.pao.model.abstracts.Location;
 
 import java.util.Scanner;
 
@@ -11,7 +8,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*
 
         Scanner scanner = new Scanner(System.in);
 
@@ -24,7 +20,7 @@ public class Main {
                 break;
             }
         }
-        */
+
 
 
     }
