@@ -107,8 +107,14 @@ public class Menu {
 
         memberService.addOnlyOne(member);
 
-        System.out.println("\nGet by Name method: \n");
+
+
+        System.out.println("\n========== GET BY NAME METHOD ==========\n");
+
         System.out.println(memberService.getByName("Popescu Diana"));
+
+        System.out.println("\n=======================================\n");
+
 
 
         Member member1 = Member.builder()
@@ -117,20 +123,24 @@ public class Menu {
                 .memberType(MemberType.STANDARD)
                 .build();
 
-        System.out.println("""
-                                
-                Update member method:
-                                
-                Before:
-                """);
+        System.out.println("\n========== UPDATE MEMBER METHOD ==========\n");
+
+        System.out.println("\n BEFORE \n");
 
         System.out.println(member);
+
 
         memberService.editMemberById(member.getId(), member1);
         memberService.addOnlyOne(member1);
 
-        System.out.println("\nAfter update: \n");
+
+        System.out.println("\n AFTER \n");
+
         System.out.println(member1);
+
+        System.out.println("\n=======================================\n");
+
+
 
         Member member2 = Member.builder()
                 .id(UUID.randomUUID())
@@ -140,31 +150,38 @@ public class Menu {
 
         memberService.addOnlyOne(member2);
 
-        System.out.println("\nGet by Id method: \n");
+        System.out.println("\n========== GET MEMBER BY ID METHOD ==========\n");
+
         System.out.println(memberService.getByID(member2.getId()));
 
-
-        System.out.println("\nGet all members method: \n");
-        memberService.getAllFromMap().
-                forEach((key, value) -> System.out.println(value));
+        System.out.println("\n=======================================\n");
 
 
-        System.out.println("""
-                                
-                Remove member by Id method:
-                                
-                Before:
-                """);
+
+        System.out.println("\n========== GET ALL MEMBERS METHOD ==========\n");
 
         memberService.getAllFromMap().
                 forEach((key, value) -> System.out.println(value));
 
-        System.out.println("\nAfter: \n");
+        System.out.println("\n=======================================\n");
+
+
+
+        System.out.println("\n========== REMOVE MEMBER METHOD ==========\n");
+        System.out.println("\n BEFORE \n");
+
+        memberService.getAllFromMap().
+                forEach((key, value) -> System.out.println(value));
+
+        System.out.println("\n AFTER \n");
 
         memberService.removeMemberById(member2.getId());
         memberService.getAllFromMap().
                 forEach((key, value) -> System.out.println(value));
 
+        System.out.println("\n=======================================\n");
+
+        System.out.println("************************** END OF DEMO **************************\n");
 
     }
 
@@ -277,30 +294,46 @@ public class Menu {
 
         bookService.addOnlyOne(book);
 
-        System.out.println("\nGet by Title method:\n");
+
+        System.out.println("\n========== GET BOOK BY TITLE METHOD ==========\n");
+
         System.out.println(bookService.getByTitle(book.getTitle()));
 
-        System.out.println("\nGet all books from list method:\n");
+        System.out.println("\n=======================================\n");
+
+
+
+        System.out.println("\n========== GET ALL BOOKS FROM LIST METHOD ==========\n");
+
         bookService.getAllFromList()
                 .forEach(System.out::println);
 
-        System.out.println("\nAdd all books from given list method:\n");
+        System.out.println("\n=======================================\n");
+
+
+
+        System.out.println("\n========== ADD ALL BOOKS FROM GIVEN LIST METHOD ==========\n");
+
         bookService.addAllFromGivenList(books);
 
         bookService.getAllFromList()
                 .forEach(System.out::println);
 
-        System.out.println("\nSearch books by title method:\n");
+        System.out.println("\n=======================================\n");
+
+
+
+        System.out.println("\n========== SEARCH BOOKS BY TITLE METHOD ==========\n");
+
         bookService.getAllByTitle("Six of crows")
                 .forEach(System.out::println);
 
+        System.out.println("\n=======================================\n");
 
-        System.out.println("""
-                                
-                Update book method:
-                                
-                Before:
-                """);
+
+
+        System.out.println("\n========== UPDATE BOOK METHOD ==========\n");
+        System.out.println("\n BEFORE \n");
 
         System.out.println(book);
 
@@ -311,31 +344,42 @@ public class Menu {
 
         bookService.editBookById(book.getId(), book1);
 
-        System.out.println("\nAfter:\n");
+
+        System.out.println("\n AFTER \n");
+
         System.out.println(bookService.getByID(book1.getId()));
 
-        System.out.println("""
-                                
-                Delete book method:
-                                
-                Before:
-                """);
+        System.out.println("\n=======================================\n");
+
+
+
+        System.out.println("\n========== REMOVE BOOK METHOD ==========\n");
+        System.out.println("\n BEFORE \n");
 
         bookService.getAllFromList()
                 .forEach(System.out::println);
 
-        System.out.println("\nAfter:\n");
+
+        System.out.println("\n AFTER \n");
 
         bookService.removeBookById(book1.getId());
         bookService.getAllFromList()
                 .forEach(System.out::println);
 
+        System.out.println("\n=======================================\n");
 
-        System.out.println("\nSort book list by publication date:\n");
+
+
+        System.out.println("\n========== SORT BOOKS BY PUBLICATION DATE METHOD ==========\n");
+
         Collections.sort(bookService.getAllFromList());
 
         bookService.getAllFromList()
                 .forEach(System.out :: println);
+
+        System.out.println("\n=======================================\n");
+
+        System.out.println("************************** END OF DEMO **************************\n");
 
     }
 
