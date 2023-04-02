@@ -53,5 +53,6 @@ This is a library management system project developed in Java for the advanced O
 1) Adding a fee to the member record each time a book is returned in damaged condition
 2) Adding a fee to the member record each time a book isn't returned on time
 3) Creating a history record of the borrowed books for each member
+4) Search by author's name and return list of written books
 
 To be continued...
