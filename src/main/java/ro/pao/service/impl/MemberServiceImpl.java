@@ -1,59 +1,55 @@
 package ro.pao.service.impl;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import ro.pao.model.Member;
+import ro.pao.repository.MemberRepository;
 import ro.pao.service.MemberService;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
+
 public class MemberServiceImpl implements MemberService {
-    private static Map<UUID, Member> memberList = new HashMap<>();
+
+    private final MemberRepository memberRepository;
 
     @Override
-    public Optional<Member> getByID(UUID id) {
-        return memberList.values()
-                .stream()
-                .filter(member -> id.equals(member.getId()))
-                .findFirst();
+    public Optional<Member> getById(UUID id) throws SQLException {
+        return memberRepository.getById(id);
     }
 
     @Override
-    public Optional<Member> getByName(String name) {
-        return memberList.values()
-                .stream()
-                .filter(member -> name.equals(member.getName()))
-                .findFirst();
+    public Optional<Member> getByName(String name) throws SQLException {
+        return memberRepository.getByName(name);
     }
 
     @Override
-    public Map<UUID, Member> getAllFromMap() {
-        return memberList;
+    public void addOnlyOne(Member member) throws SQLException {
+        memberRepository.addNewObject(member);
     }
 
     @Override
-    public void addOnlyOne(Member member) {
-        memberList.put(member.getId(), member);
-
+    public void editById(UUID id, Member member) {
+        memberRepository.editById(id, member);
     }
 
     @Override
-    public void removeMemberById(UUID id) {
-        memberList = memberList.entrySet()
-                .stream()
-                .filter(member -> !id.equals(member.getKey()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    public void removeById(UUID id) {
+        memberRepository.deleteById(id);
     }
 
     @Override
-    public void editMemberById(UUID id, Member newMember) {
-        removeMemberById(id);
-        addOnlyOne(newMember);
+    public List<Member> getAllFromList() {
+        return memberRepository.getAll();
+    }
+
+    @Override
+    public void addAllFromGivenList(List<Member> members) {
+        memberRepository.addAllFromGivenList(members);
     }
 }

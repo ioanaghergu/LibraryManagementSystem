@@ -1,67 +1,55 @@
 package ro.pao.service.impl;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import ro.pao.model.Book;
+import ro.pao.repository.BookRepository;
 import ro.pao.service.BookService;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
+
+@RequiredArgsConstructor
+@Getter
 
 public class BookServiceImpl implements BookService {
 
-    private static List<Book> books = new ArrayList<>();
+    private final BookRepository bookRepository;
 
     @Override
-    public Optional<Book> getByID(UUID id) {
-        return books.stream()
-                .filter(book -> id.equals(book.getId()))
-                .findAny();
+    public Optional<Book> getById(UUID id) throws SQLException {
+        return bookRepository.getById(id);
     }
 
     @Override
-    public Optional<Book> getByTitle(String title) {
-        return books.stream()
-                .filter(book -> title.equals(book.getTitle()))
-                .findAny();
+    public Optional<Book> getByTitle(String title) throws SQLException {
+        return bookRepository.getByTitle(title);
+    }
+
+    @Override
+    public void addOnlyOne(Book book) throws SQLException {
+        bookRepository.addNewObject(book);
+    }
+
+    @Override
+    public void editById(UUID id, Book book) {
+        bookRepository.editById(id, book);
+    }
+
+    @Override
+    public void removeById(UUID id) {
+        bookRepository.deleteById(id);
     }
 
     @Override
     public List<Book> getAllFromList() {
-        return books;
+        return bookRepository.getAll();
     }
 
     @Override
-    public List<Book> getAllByTitle(String title) {
-        return books.stream()
-                .filter(book -> book.getTitle().equals(title))
-                .collect(Collectors.toList());
-    }
-
-
-    @Override
-    public void addOnlyOne(Book book) {
-        books.add(book);
-
-    }
-
-    @Override
-    public void removeBookById(UUID id) {
-        books = books.stream()
-                .filter(book -> !id.equals(book.getId()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void editBookById(UUID id, Book book) {
-        removeBookById(id);
-        addOnlyOne(book);
-
-    }
-
-    @Override
-    public void addAllFromGivenList(List<Book> bookList) {
-        books.addAll(bookList);
+    public void addAllFromGivenList(List<Book> books) {
+        bookRepository.addAllFromGivenList(books);
     }
 }

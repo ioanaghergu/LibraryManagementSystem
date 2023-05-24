@@ -13,7 +13,6 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @EqualsAndHashCode
 @SuperBuilder(toBuilder = true)
 
@@ -25,7 +24,7 @@ public class Book implements Comparable<Book> {
     private Section section;
     private Publisher publisher;
     private LocalDate publicationDate;
-    private List<Author> authors;
+    private Author author;
     private Integer copies;
 
     @Override
@@ -41,7 +40,7 @@ public class Book implements Comparable<Book> {
                 "Publisher = " + publisher + "\n" +
                 "Publication Date = " + publicationDate + "\n" +
                 "Number of copies = " + copies + "\n" +
-                "List of authors = " + authors + "] \n";
+                "Author = " + author + "] \n";
     }
 
 }

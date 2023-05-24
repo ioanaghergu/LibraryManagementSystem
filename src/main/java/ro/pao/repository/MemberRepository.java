@@ -1,10 +1,10 @@
-package ro.pao.service;
+package ro.pao.repository;
 
 import ro.pao.model.Member;
 
 import java.sql.SQLException;
 import java.util.Optional;
 
-public interface MemberService extends Service<Member> {
+public interface MemberRepository extends Repository<Member> {
     Optional<Member> getByName(String name) throws SQLException;
 }

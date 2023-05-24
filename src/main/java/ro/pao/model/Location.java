@@ -3,6 +3,8 @@ package ro.pao.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,6 +14,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 
 public class Location {
+    private UUID id;
     private String country;
     private String city;
     private String street;
