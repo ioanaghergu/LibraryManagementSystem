@@ -20,6 +20,23 @@ public class BookRepositoryImpl implements BookRepository {
     private static final BookMapper bookMapper = BookMapper.getInstance();
 
     @Override
+    public void addFromJson(Book book) {
+
+        String insertSql = "INSERT INTO Book (id, title) VALUES (?, ?)";
+
+        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
+
+            preparedStatement.setString(1, book.getId().toString());
+            preparedStatement.setString(2, book.getTitle());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
     public Optional<Book> getById(UUID id) {
 
         String selectSql = "SELECT * FROM Book WHERE id=?";

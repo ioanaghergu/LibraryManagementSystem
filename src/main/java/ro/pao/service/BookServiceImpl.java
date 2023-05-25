@@ -19,6 +19,11 @@ public non-sealed class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
     @Override
+    public void addFromJson(Book book) {
+        bookRepository.addFromJson(book);
+    }
+
+    @Override
     public Optional<Book> getById(UUID id) throws SQLException {
         return bookRepository.getById(id);
     }

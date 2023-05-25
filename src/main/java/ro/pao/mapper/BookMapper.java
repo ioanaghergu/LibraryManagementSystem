@@ -1,5 +1,6 @@
 package ro.pao.mapper;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import ro.pao.model.Author;
 import ro.pao.model.Book;
 import ro.pao.model.Publisher;
@@ -22,6 +23,13 @@ public class BookMapper {
     }
     public static BookMapper getInstance() {
         return INSTANCE;
+    }
+
+    public Book mapJsonObjectToBook(JsonNode node) {
+
+        return Book.builder()
+                .title(node.get("title").asText())
+                .build();
     }
 
     public Optional<Book> mapToBook(ResultSet resultSet) throws SQLException {
@@ -57,4 +65,5 @@ public List<Book> mapToBookList(ResultSet resultSet) throws SQLException {
 
         return bookList;
     }
+
 }

@@ -22,8 +22,6 @@ f
 6src/main/java/ro/pao/config/DatabaseConfiguration.java,a\f\afbc55504aab476264d02b051e3ad730a1f60f9c
 [
 +src/main/java/ro/pao/model/enums/Genre.java,e\9\e96c7cd68007b0b3bcef3cdc5a7792226726f705
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 ]
 -src/main/java/ro/pao/model/enums/Section.java,b\1\b1f7a1a38b8ed7e9bc0abdac728c6266b46661b7
 \

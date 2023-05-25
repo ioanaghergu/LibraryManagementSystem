@@ -1,5 +1,6 @@
 package ro.pao.application;
 
+import ro.pao.gateways.Requests;
 import ro.pao.model.*;
 import ro.pao.model.enums.Genre;
 import ro.pao.model.enums.MemberType;
@@ -584,6 +585,15 @@ public class Menu {
 //        System.out.println("************************** END OF DEMO **************************\n");
 //
 //
+//    }
+
+//    public void httpClient() {
+//
+//        Requests requests = new Requests();
+//
+//        requests.saveRequestInfo();
+//
+//        bookService.getAllFromList().forEach(System.out::println);
 //    }
 
 

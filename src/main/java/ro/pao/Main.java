@@ -25,7 +25,9 @@ public class Main {
 
             menu.introFine();
 
-            //menu.introLoan();
+//            menu.introLoan();
+//
+//            menu.httpClient();
 
             if ("exit".equals(scanner.next())) {
                 break;
