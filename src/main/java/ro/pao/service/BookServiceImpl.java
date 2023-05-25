@@ -2,6 +2,7 @@ package ro.pao.service;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import ro.pao.model.Book;
 import ro.pao.repository.BookRepository;
 import ro.pao.service.BookService;
@@ -10,6 +11,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RequiredArgsConstructor
 @Getter
@@ -18,6 +21,8 @@ public non-sealed class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
 
+    private static final Logger logger = Logger.getGlobal();
+
     @Override
     public void addFromJson(Book book) {
         bookRepository.addFromJson(book);
@@ -25,12 +30,30 @@ public non-sealed class BookServiceImpl implements BookService {
 
     @Override
     public Optional<Book> getById(UUID id) throws SQLException {
-        return bookRepository.getById(id);
+
+        Optional<Book> book = Optional.empty();
+
+        try {
+            book = bookRepository.getById(id);
+
+        } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage());
+        }
+        return book;
     }
 
     @Override
     public Optional<Book> getByTitle(String title) throws SQLException {
-        return bookRepository.getByTitle(title);
+
+        Optional<Book> book = Optional.empty();
+
+        try {
+            book = bookRepository.getByTitle(title);
+
+        } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage());
+        }
+        return book;
     }
 
     @Override

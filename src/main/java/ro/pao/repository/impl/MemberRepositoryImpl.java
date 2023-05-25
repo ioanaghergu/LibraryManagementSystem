@@ -1,6 +1,7 @@
 package ro.pao.repository.impl;
 
 import ro.pao.config.DatabaseConfiguration;
+import ro.pao.exceptions.ObjectNotFound;
 import ro.pao.mapper.MemberMapper;;
 import ro.pao.model.Member;
 import ro.pao.repository.MemberRepository;
@@ -38,7 +39,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> getByName(String name) {
+    public Optional<Member> getByName(String name) throws ObjectNotFound {
 
         String selectSql = "SELECT * FROM Member WHERE name=?";
 
@@ -49,7 +50,13 @@ public class MemberRepositoryImpl implements MemberRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            return memberMapper.mapToMember(resultSet);
+            Optional<Member> member = memberMapper.mapToMember(resultSet);
+
+            if(member.isEmpty()) {
+                throw new ObjectNotFound("Nu exista niciun membru cu acest nume.");
+            }
+
+            return member;
 
 
         } catch (SQLException e) {

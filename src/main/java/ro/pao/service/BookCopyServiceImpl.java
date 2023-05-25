@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RequiredArgsConstructor
 @Getter
@@ -19,15 +21,38 @@ public non-sealed class BookCopyServiceImpl implements BookCopyService {
 
     private final BookCopyRepository copyRepository;
 
+    private static final Logger logger = Logger.getGlobal();
+
     @Override
     public Optional<BookCopy> getById(UUID id) throws SQLException {
-        return copyRepository.getById(id);
+
+        Optional<BookCopy> copy = Optional.empty();
+
+        try {
+            copy = copyRepository.getById(id);
+
+        } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage());
+        }
+
+        return copy;
     }
 
     @Override
     public Optional<BookCopy> getByTitle(String title) throws SQLException {
-        return copyRepository.getByTitle(title);
+
+        Optional<BookCopy> copy = Optional.empty();
+
+        try {
+            copy = copyRepository.getByTitle(title);
+
+        } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage());
+        }
+
+        return copy;
     }
+
     @Override
     public void addOnlyOne(BookCopy copy) throws SQLException {
         copyRepository.addNewObject(copy);

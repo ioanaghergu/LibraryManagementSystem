@@ -18,7 +18,7 @@ public class BookCopyRepositoryImpl implements BookCopyRepository {
     private static final BookCopyMapper copyMapper = BookCopyMapper.getInstance();
 
     @Override
-    public Optional<BookCopy> getByTitle(String title) {
+    public Optional<BookCopy> getByTitle(String title){
 
         String selectSql = "SELECT * FROM BookCopy WHERE title=?";
 

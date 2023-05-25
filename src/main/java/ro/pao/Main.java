@@ -1,13 +1,14 @@
 package ro.pao;
 
 import ro.pao.application.Menu;
+import ro.pao.exceptions.ObjectNotFound;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ObjectNotFound {
 
 
         Scanner scanner = new Scanner(System.in);

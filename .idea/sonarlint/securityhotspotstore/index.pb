@@ -36,10 +36,6 @@ f
 6src/main/java/ro/pao/service/impl/LoanServiceImpl.java,b\b\bb13b0ae214187776826d18e519bf7861f0b426f
 f
 6src/main/java/ro/pao/service/impl/FineServiceImpl.java,f\f\ff8c940d8350a5fcda62a2ef084b95ec75d4ae00
-_
-/src/main/java/ro/pao/repository/Repository.java,0\a\0a851bd23d3a1d0a858f31f854765ab787258309
-c
-3src/main/java/ro/pao/repository/LoanRepository.java,6\6\6688fa8fc477aeeb9f70f9e3f8e8cef66c64f2d9
 Å
 Q.idea/sonarlint/securityhotspotstore/a/f/afbc55504aab476264d02b051e3ad730a1f60f9c,e\0\e0b641e4fd2ca3a198c14572c7625c95a1b4a725
 w
@@ -128,5 +124,3 @@ Q.idea/sonarlint/securityhotspotstore/1/0/10a03f31c4dce92cb371e761ce9429428bb6c1
 Q.idea/sonarlint/securityhotspotstore/0/3/0398ccd0f49298b10a3d76a47800d2ebecd49859,6\e\6eb79a6de022d34531c7294103c6ad90c6fcf123
 Å
 Q.idea/sonarlint/securityhotspotstore/6/0/604de4a43146fd8cf118eb053e9ff7c77e79db87,2\8\280f9dbf9e0db386c2ce063f14e1054cc548258a
-c
-3src/main/java/ro/pao/repository/FineRepository.java,0\b\0b14c0188603574ee08677853c9737009dd290bf

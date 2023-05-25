@@ -1,6 +1,7 @@
 package ro.pao.repository.impl;
 
 import ro.pao.config.DatabaseConfiguration;
+import ro.pao.exceptions.ObjectNotFound;
 import ro.pao.mapper.AuthorMapper;
 import ro.pao.model.Author;
 import ro.pao.repository.AuthorRepository;
@@ -18,7 +19,7 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     private static final AuthorMapper authorMapper = AuthorMapper.getInstance();
 
     @Override
-    public Optional<Author> getByName(String name) {
+    public Optional<Author> getByName(String name) throws ObjectNotFound {
 
         String selectSql = "SELECT * FROM Author WHERE name=?";
 
@@ -28,7 +29,13 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            return authorMapper.mapToAuthor(resultSet);
+            Optional<Author> author = authorMapper.mapToAuthor(resultSet);
+
+            if(author.isEmpty()) {
+                throw new ObjectNotFound("Nu exista niciun autor cu acest nume.");
+            }
+
+            return author;
 
 
         } catch (SQLException e) {

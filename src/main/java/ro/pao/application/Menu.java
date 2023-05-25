@@ -1,5 +1,6 @@
 package ro.pao.application;
 
+import ro.pao.exceptions.ObjectNotFound;
 import ro.pao.gateways.Requests;
 import ro.pao.model.*;
 import ro.pao.model.enums.Genre;
@@ -29,7 +30,7 @@ public class Menu {
         return (INSTANCE == null ? new Menu() : INSTANCE);
     }
 
-    public void introAuthor() throws SQLException {
+    public void introAuthor() throws SQLException, ObjectNotFound {
 
         String intro = "************************** DEMO FOR THE AUTHOR SERVICE INTERFACE **************************\n";
 
@@ -115,7 +116,7 @@ public class Menu {
 
     }
 
-    public void introBook() throws SQLException {
+    public void introBook() throws SQLException, ObjectNotFound {
 
         String intro = "************************** DEMO FOR THE BOOK SERVICE INTERFACE **************************\n";
 
@@ -243,7 +244,7 @@ public class Menu {
 
     }
 
-    public void introBookCopy() throws SQLException {
+    public void introBookCopy() throws SQLException, ObjectNotFound {
 
         String intro = "************************** DEMO FOR THE BOOK COPY SERVICE INTERFACE **************************\n";
 
@@ -345,7 +346,7 @@ public class Menu {
 
     }
 
-    public void introMember() throws SQLException {
+    public void introMember() throws SQLException, ObjectNotFound {
 
         String intro = "************************** DEMO FOR THE MEMBER SERVICE INTERFACE **************************\n";
 
@@ -425,7 +426,7 @@ public class Menu {
 
     }
 
-    public void introFine() throws SQLException {
+    public void introFine() throws SQLException, ObjectNotFound {
 
         String intro = "************************** DEMO FOR THE FINE SERVICE INTERFACE **************************\n";
 
