@@ -24,18 +24,11 @@ public class LoanMapper {
         if(resultSet.next()) {
             return Optional.of(
                     Loan.builder()
-                            .issuer(Librarian.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_issuer")))
-                                    .build())
-                            .receiver(Librarian.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_receiver")))
-                                    .build())
-                            .member(Member.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_member")))
-                                    .build())
-                            .book(BookCopy.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_copy")))
-                                    .build())
+                            .id(UUID.fromString(resultSet.getString("id")))
+                            .id_issuer(UUID.fromString(resultSet.getString("id_issuer")))
+                            .id_receiver(UUID.fromString(resultSet.getString("id_receiver")))
+                            .id_member(UUID.fromString(resultSet.getString("id_member")))
+                            .id_copy(UUID.fromString(resultSet.getString("id_copy")))
                             .build()
             );
         } else {
@@ -49,18 +42,11 @@ public class LoanMapper {
         while(resultSet.next()) {
             loanList.add(
                     Loan.builder()
-                            .issuer(Librarian.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_issuer")))
-                                    .build())
-                            .receiver(Librarian.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_receiver")))
-                                    .build())
-                            .member(Member.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_member")))
-                                    .build())
-                            .book(BookCopy.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_copy")))
-                                    .build())
+                            .id(UUID.fromString(resultSet.getString("id")))
+                            .id_issuer(UUID.fromString(resultSet.getString("id_issuer")))
+                            .id_receiver(UUID.fromString(resultSet.getString("id_receiver")))
+                            .id_member(UUID.fromString(resultSet.getString("id_member")))
+                            .id_copy(UUID.fromString(resultSet.getString("id_copy")))
                             .build()
             );
 

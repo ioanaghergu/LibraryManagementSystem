@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface BookRepository extends Repository<Book> {
 
-    Optional<Book> getByTitle(String Title) throws SQLException;
+    Optional<Book> getByTitle(String title) throws SQLException;
 }

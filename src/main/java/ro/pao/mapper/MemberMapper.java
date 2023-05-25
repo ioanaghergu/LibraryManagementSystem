@@ -30,12 +30,9 @@ public class MemberMapper {
         if(resultSet.next()) {
             return Optional.of(
                     Member.builder()
+                            .id(UUID.fromString(resultSet.getString("id")))
                             .name(resultSet.getString("name"))
-                            .email(resultSet.getString("email"))
                             .memberType(MemberType.valueOf(resultSet.getString("memberType")))
-                            .adress(Location.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_location")))
-                                    .build())
                             .build()
             );
         } else {
@@ -49,12 +46,9 @@ public class MemberMapper {
         while (resultSet.next()) {
             memberList.add(
                     Member.builder()
+                            .id(UUID.fromString(resultSet.getString("id")))
                             .name(resultSet.getString("name"))
-                            .email(resultSet.getString("email"))
                             .memberType(MemberType.valueOf(resultSet.getString("memberType")))
-                            .adress(Location.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_location")))
-                                    .build())
                             .build()
             );
         }

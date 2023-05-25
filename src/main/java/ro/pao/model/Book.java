@@ -6,7 +6,6 @@ import ro.pao.model.enums.Section;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 @Setter
@@ -14,33 +13,22 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+//@ToString
 @SuperBuilder(toBuilder = true)
 
-public class Book implements Comparable<Book> {
+public class Book {
 
     private UUID id;
+    private UUID id_author;
+    private UUID id_publisher;
     private String title;
     private Genre genre;
     private Section section;
-    private Publisher publisher;
     private LocalDate publicationDate;
-    private Author author;
-    private Integer copies;
-
-    @Override
-    public int compareTo(Book book) {
-        return publicationDate.compareTo(book.publicationDate);
-    }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "[ Title = " + title + "\n" +
-                "Genre = " + genre + "\n" +
-                "Section = " + section + "\n" +
-                "Publisher = " + publisher + "\n" +
-                "Publication Date = " + publicationDate + "\n" +
-                "Number of copies = " + copies + "\n" +
-                "Author = " + author + "] \n";
+        return getClass().getSimpleName() + "[Title = " + title + "]";
     }
 
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class LibrarianMapper {
     private static final LibrarianMapper INSTANCE = new LibrarianMapper();
@@ -23,6 +24,7 @@ public class LibrarianMapper {
         if(resultSet.next()) {
             return Optional.of(
                     Librarian.builder()
+                            .id(UUID.fromString(resultSet.getString("id")))
                             .name(resultSet.getString("name"))
                             .salary(resultSet.getDouble("salary"))
                             .build()
@@ -38,6 +40,7 @@ public class LibrarianMapper {
         while(resultSet.next()) {
             librarianList.add(
                     Librarian.builder()
+                            .id(UUID.fromString(resultSet.getString("id")))
                             .name(resultSet.getString("name"))
                             .salary(resultSet.getDouble("salary"))
                             .build()

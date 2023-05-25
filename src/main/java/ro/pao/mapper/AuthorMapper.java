@@ -29,10 +29,7 @@ public class AuthorMapper {
                             .id(UUID.fromString(resultSet.getString("id")))
                             .name(resultSet.getString("name"))
                             .email(resultSet.getString("email"))
-                            .phoneNumber(resultSet.getString("email"))
-                            .adress(Location.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_location")))
-                                    .build())
+                            .phoneNumber(resultSet.getString("phoneNumber"))
                             .build()
             );
 
@@ -50,10 +47,7 @@ public class AuthorMapper {
                             .id(UUID.fromString(resultSet.getString("id")))
                             .name(resultSet.getString("name"))
                             .email(resultSet.getString("email"))
-                            .phoneNumber(resultSet.getString("email"))
-                            .adress(Location.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_location")))
-                                    .build())
+                            .phoneNumber(resultSet.getString("phoneNumber"))
                             .build()
             );
         }

@@ -42,15 +42,16 @@ public class LoanRepositoryImpl implements LoanRepository {
     @Override
     public void addNewObject(Loan loan) {
 
-        String insertSql = "INSERT INTO Loan VALUES (?, ?, ?, ?)";
+        String insertSql = "INSERT INTO Loan (id, id_issuer, id_receiver, id_member, id_copy) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
 
-            preparedStatement.setString(1, loan.getIssuer().getId().toString());
-            preparedStatement.setString(2, loan.getReceiver().getId().toString());
-            preparedStatement.setString(3, loan.getMember().getId().toString());
-            preparedStatement.setString(4, loan.getBook().getId().toString());
+            preparedStatement.setString(1, loan.getId().toString());
+            preparedStatement.setString(2, loan.getId_issuer().toString());
+            preparedStatement.setString(3, loan.getId_receiver().toString());
+            preparedStatement.setString(4, loan.getId_member().toString());
+            preparedStatement.setString(5, loan.getId_copy().toString());
 
             preparedStatement.executeUpdate();
 
@@ -68,7 +69,7 @@ public class LoanRepositoryImpl implements LoanRepository {
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateSql)) {
 
-            preparedStatement.setString(1, loan.getMember().getId().toString());
+            preparedStatement.setString(1, loan.getId_member().toString());
             preparedStatement.setString(2, id.toString());
 
             preparedStatement.executeUpdate();

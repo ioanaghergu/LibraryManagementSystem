@@ -1,13 +1,11 @@
 package ro.pao.repository.impl;
 
-import com.sun.jdi.event.StepEvent;
 import ro.pao.config.DatabaseConfiguration;
 import ro.pao.mapper.AuthorMapper;
 import ro.pao.model.Author;
 import ro.pao.repository.AuthorRepository;
 
-import javax.xml.crypto.Data;
-import java.awt.dnd.DropTarget;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,9 +28,8 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-                return authorMapper.mapToAuthor(resultSet).stream().findAny();
-            }
+            return authorMapper.mapToAuthor(resultSet);
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,13 +62,14 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     @Override
     public void addNewObject(Author author) {
 
-        String insertSql = "INSERT INTO Author (id, name) VALUES (?, ?)";
+        String insertSql = "INSERT INTO Author (id, name, email) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
 
             preparedStatement.setString(1, author.getId().toString());
             preparedStatement.setString(2, author.getName());
+            preparedStatement.setString(3, author.getEmail());
 
             preparedStatement.executeUpdate();
 

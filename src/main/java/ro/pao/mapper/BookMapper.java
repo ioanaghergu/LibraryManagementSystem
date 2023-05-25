@@ -1,5 +1,6 @@
 package ro.pao.mapper;
 
+import ro.pao.model.Author;
 import ro.pao.model.Book;
 import ro.pao.model.Publisher;
 import ro.pao.model.enums.Genre;
@@ -31,9 +32,7 @@ public class BookMapper {
                             .title(resultSet.getString("title"))
                             .genre(Genre.valueOf(resultSet.getString("genre")))
                             .section(Section.valueOf(resultSet.getString("section")))
-                            .publisher(Publisher.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_publisher")))
-                                    .build())
+                            .id_author(UUID.fromString(resultSet.getString("id_author")))
                             .build()
             );
         } else {
@@ -51,9 +50,7 @@ public List<Book> mapToBookList(ResultSet resultSet) throws SQLException {
                             .title(resultSet.getString("title"))
                             .genre(Genre.valueOf(resultSet.getString("genre")))
                             .section(Section.valueOf(resultSet.getString("section")))
-                            .publisher(Publisher.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_publisher")))
-                                    .build())
+                            .id_author(UUID.fromString(resultSet.getString("id_author")))
                             .build()
             );
         }

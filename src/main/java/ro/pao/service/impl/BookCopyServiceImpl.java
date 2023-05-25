@@ -2,6 +2,7 @@ package ro.pao.service.impl;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import ro.pao.model.Book;
 import ro.pao.model.BookCopy;
 import ro.pao.repository.BookCopyRepository;
 import ro.pao.service.BookCopyService;
@@ -23,6 +24,10 @@ public class BookCopyServiceImpl implements BookCopyService {
         return copyRepository.getById(id);
     }
 
+    @Override
+    public Optional<BookCopy> getByTitle(String title) throws SQLException {
+        return copyRepository.getByTitle(title);
+    }
     @Override
     public void addOnlyOne(BookCopy copy) throws SQLException {
         copyRepository.addNewObject(copy);

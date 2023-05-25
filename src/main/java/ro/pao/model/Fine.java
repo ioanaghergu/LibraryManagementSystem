@@ -19,7 +19,11 @@ import java.util.UUID;
 public class Fine {
     private UUID id;
     private Double fineValue;
-    private Member member;
-    private List<BookCopy> returnedLateBooks;
+    private UUID id_member;
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[Fine Value = " + fineValue + "]";
+    }
 
 }

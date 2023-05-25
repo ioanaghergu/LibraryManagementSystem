@@ -25,10 +25,9 @@ public class FineMapper {
         if(resultSet.next()) {
             return Optional.of(
                     Fine.builder()
+                            .id(UUID.fromString(resultSet.getString("id")))
                             .fineValue(resultSet.getDouble("fineValue"))
-                            .member(Member.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_member")))
-                                    .build())
+                            .id_member(UUID.fromString(resultSet.getString("id_member")))
                             .build()
             );
         } else {
@@ -42,10 +41,9 @@ public class FineMapper {
         while(resultSet.next()) {
             fineList.add(
                     Fine.builder()
+                            .id(UUID.fromString(resultSet.getString("id")))
                             .fineValue(resultSet.getDouble("fineValue"))
-                            .member(Member.builder()
-                                    .id(UUID.fromString(resultSet.getString("id_member")))
-                                    .build())
+                            .id_member(UUID.fromString(resultSet.getString("id_member")))
                             .build()
             );
         }

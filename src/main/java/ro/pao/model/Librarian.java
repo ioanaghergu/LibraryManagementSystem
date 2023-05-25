@@ -4,6 +4,8 @@ import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.GenericInfo;
 import lombok.*;
 
+import java.util.UUID;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -12,5 +14,6 @@ import lombok.*;
 @SuperBuilder(toBuilder = true)
 
 public class Librarian extends GenericInfo {
+    private UUID id;
     private Double salary;
 }

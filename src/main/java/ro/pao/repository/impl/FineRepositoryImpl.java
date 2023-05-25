@@ -43,14 +43,14 @@ public class FineRepositoryImpl implements FineRepository {
     @Override
     public void addNewObject(Fine fine) {
 
-        String inserSql = "INSERT INTO Fine VALUES (?, ?, ?)";
+        String inserSql = "INSERT INTO Fine (id, fineValue, id_member) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(inserSql)) {
 
             preparedStatement.setString(1, fine.getId().toString());
-            preparedStatement.setFloat(2, fine.getFineValue().floatValue());
-            preparedStatement.setString(3, fine.getMember().getId().toString());
+            preparedStatement.setDouble(2, fine.getFineValue().doubleValue());
+            preparedStatement.setString(3, fine.getId_member().toString());
 
             preparedStatement.executeUpdate();
 
@@ -67,7 +67,7 @@ public class FineRepositoryImpl implements FineRepository {
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateSql)) {
 
-            preparedStatement.setFloat(1, fine.getFineValue().floatValue());
+            preparedStatement.setDouble(1, fine.getFineValue());
             preparedStatement.setString(2, id.toString());
 
             preparedStatement.executeUpdate();

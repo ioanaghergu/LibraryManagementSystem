@@ -49,9 +49,8 @@ public class MemberRepositoryImpl implements MemberRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-                return memberMapper.mapToMember(resultSet).stream().findAny();
-            }
+            return memberMapper.mapToMember(resultSet);
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,13 +62,14 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public void addNewObject(Member member) {
 
-        String insertSql = "INSERT INTO Member VALUES (?, ?)";
+        String insertSql = "INSERT INTO Member (id, name, memberType) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
 
-            preparedStatement.setString(1, member.getName());
-            preparedStatement.setString(2, member.getMemberType().toString());
+            preparedStatement.setString(1, member.getId().toString());
+            preparedStatement.setString(2, member.getName());
+            preparedStatement.setString(3, member.getMemberType().toString());
 
             preparedStatement.executeUpdate();
 

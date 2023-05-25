@@ -16,9 +16,9 @@ import java.util.UUID;
 
 public class Loan {
     private UUID id;
-    private Librarian issuer;
-    private Librarian receiver;
-    private Member member;
-    private BookCopy book;
+    private UUID id_issuer;
+    private UUID id_receiver;
+    private UUID id_member;
+    private UUID id_copy;
 
 }

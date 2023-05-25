@@ -1,6 +1,8 @@
 package ro.pao.mapper;
 
 import ro.pao.model.BookCopy;
+import ro.pao.model.enums.Genre;
+import ro.pao.model.enums.Section;
 import ro.pao.model.enums.Status;
 
 
@@ -23,15 +25,22 @@ public class BookCopyMapper {
 
     public Optional<BookCopy> mapToBookCopy(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
-            return Optional.of(
-                    BookCopy.builder()
-                            .copyNumber(UUID.fromString(resultSet.getString("copy_number")))
+                 return Optional.of(
+                         BookCopy.builder()
+                            .id(UUID.fromString(resultSet.getString("id")))
+                            .title(resultSet.getString("title"))
+                            .genre(Genre.valueOf(resultSet.getString("genre")))
+                            .section(Section.valueOf(resultSet.getString("section")))
                             .status(Status.valueOf(resultSet.getString("status")))
-                            .issueDate(resultSet.getDate("issueDate").toLocalDate())
-                            .dueDate(resultSet.getDate("dueDate").toLocalDate())
-                            .returnDate(resultSet.getDate("returnDate").toLocalDate())
+                            .id_author(UUID.fromString(resultSet.getString("id_author")))
+                            .issueDate(resultSet.getDate("issueDate") != null ?
+                                    resultSet.getDate("issueDate").toLocalDate() : null)
+                            .dueDate(resultSet.getDate("dueDate") != null ?
+                                    resultSet.getDate("dueDate").toLocalDate() : null)
+                            .returnDate(resultSet.getDate("returnDate") != null ?
+                                    resultSet.getDate("returnDate").toLocalDate() : null)
                             .build()
-            );
+                 );
         } else {
             return Optional.empty();
         }
@@ -44,11 +53,18 @@ public class BookCopyMapper {
         while (resultSet.next()) {
             bookCopyList.add(
                     BookCopy.builder()
-                            .copyNumber(UUID.fromString(resultSet.getString("copy_number")))
+                            .id(UUID.fromString(resultSet.getString("id")))
+                            .title(resultSet.getString("title"))
+                            .genre(Genre.valueOf(resultSet.getString("genre")))
+                            .section(Section.valueOf(resultSet.getString("section")))
                             .status(Status.valueOf(resultSet.getString("status")))
-                            .issueDate(resultSet.getDate("issueDate").toLocalDate())
-                            .dueDate(resultSet.getDate("dueDate").toLocalDate())
-                            .returnDate(resultSet.getDate("returnDate").toLocalDate())
+                            .id_author(UUID.fromString(resultSet.getString("id_author")))
+                            .issueDate(resultSet.getDate("issueDate") != null ?
+                                    resultSet.getDate("issueDate").toLocalDate() : null)
+                            .dueDate(resultSet.getDate("dueDate") != null ?
+                                    resultSet.getDate("dueDate").toLocalDate() : null)
+                            .returnDate(resultSet.getDate("returnDate") != null ?
+                                    resultSet.getDate("returnDate").toLocalDate() : null)
                             .build()
             );
         }

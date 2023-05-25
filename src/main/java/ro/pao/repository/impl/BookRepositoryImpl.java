@@ -52,9 +52,8 @@ public class BookRepositoryImpl implements BookRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-                return bookMapper.mapToBook(resultSet).stream().findAny();
-            }
+            return bookMapper.mapToBook(resultSet).stream().findAny();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,15 +65,17 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public void addNewObject(Book book) {
 
-        String insertSql = "INSERT INTO Book VALUES (?, ?, ?, ?)";
+        String insertSql = "INSERT INTO Book (id, title, genre, section, id_author) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
 
-            preparedStatement.setString(1, book.getTitle());
-            preparedStatement.setString(2, book.getAuthor().getName());
+            preparedStatement.setString(1, book.getId().toString());
+            preparedStatement.setString(2, book.getTitle());
             preparedStatement.setString(3, book.getGenre().toString());
             preparedStatement.setString(4, book.getSection().toString());
+            preparedStatement.setString(5, book.getId_author().toString());
+
 
             preparedStatement.executeUpdate();
 
