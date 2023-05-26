@@ -25,8 +25,6 @@ public class Main {
             menu.introMember();
 
             menu.introFine();
-
-//            menu.introLoan();
 //
 //            menu.httpClient();
 
