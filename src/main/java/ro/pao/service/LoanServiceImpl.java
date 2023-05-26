@@ -47,4 +47,9 @@ public non-sealed class LoanServiceImpl implements LoanService {
     public void addAllFromGivenList(List<Loan> loans) {
         loanRepository.addAllFromGivenList(loans);
     }
+
+    @Override
+    public List<Loan> getLoansForMember(UUID id_member) {
+        return loanRepository.getLoansForMember(id_member);
+    }
 }

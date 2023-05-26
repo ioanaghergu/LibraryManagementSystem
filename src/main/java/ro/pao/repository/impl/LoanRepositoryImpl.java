@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -119,5 +120,26 @@ public class LoanRepositoryImpl implements LoanRepository {
     public void addAllFromGivenList(List<Loan> loanList) {
 
         loanList.forEach(this::addNewObject);
+    }
+
+    @Override
+    public List<Loan> getLoansForMember(UUID id_member) {
+
+        String selectSql = "SELECT * FROM Loan WHERE id_member=?";
+
+        try(Connection connection = DatabaseConfiguration.getDatabaseConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+
+            preparedStatement.setString(1, id_member.toString());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return loanMapper.mapToLoanList(resultSet);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return List.of();
     }
 }

@@ -25,8 +25,10 @@ public class Main {
             menu.introMember();
 
             menu.introFine();
-//
-//            menu.httpClient();
+
+            menu.introLoan();
+
+            menu.Threads();
 
             if ("exit".equals(scanner.next())) {
                 break;

@@ -1,10 +1,9 @@
 package ro.pao.repository.impl;
 
 import ro.pao.config.DatabaseConfiguration;
-import ro.pao.mapper.FineMapper;
-import ro.pao.model.Fine;
-import ro.pao.repository.FineRepository;
-
+import ro.pao.mapper.LibrarianMapper;
+import ro.pao.model.Librarian;
+import ro.pao.repository.LibrarianRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,14 +13,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class FineRepositoryImpl implements FineRepository {
+public class LibrarianRepositoryImpl implements LibrarianRepository {
 
-    private static final FineMapper fineMapper = FineMapper.getInstance();
+    private static final LibrarianMapper librarianMapper = LibrarianMapper.getInstance();
 
     @Override
-    public Optional<Fine> getById(UUID id) {
+    public Optional<Librarian> getById(UUID id) {
 
-        String selectSql = "SELECT * FROM Fine WHERE id=?";
+        String selectSql = "SELECT * FROM Librarian WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
@@ -30,7 +29,7 @@ public class FineRepositoryImpl implements FineRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            return fineMapper.mapToFine(resultSet);
+            return librarianMapper.mapToLibrarian(resultSet);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,16 +39,16 @@ public class FineRepositoryImpl implements FineRepository {
     }
 
     @Override
-    public void addNewObject(Fine fine) {
+    public void addNewObject(Librarian librarian) {
 
-        String inserSql = "INSERT INTO Fine (id, fineValue, id_member) VALUES (?, ?, ?)";
+        String inserSql = "INSERT INTO Librarian (id, name, salary) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(inserSql)) {
 
-            preparedStatement.setString(1, fine.getId().toString());
-            preparedStatement.setDouble(2, fine.getFineValue().doubleValue());
-            preparedStatement.setString(3, fine.getId_member().toString());
+            preparedStatement.setString(1, librarian.getId().toString());
+            preparedStatement.setString(2, librarian.getName());
+            preparedStatement.setDouble(3, librarian.getSalary());
 
             preparedStatement.executeUpdate();
 
@@ -59,14 +58,14 @@ public class FineRepositoryImpl implements FineRepository {
     }
 
     @Override
-    public void editById(UUID id, Fine fine) {
+    public void editById(UUID id, Librarian librarian) {
 
-        String updateSql = "UPDATE Fine SET fineValue=? WHERE id=?";
+        String updateSql = "UPDATE Librarian SET salary=? WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateSql)) {
 
-            preparedStatement.setDouble(1, fine.getFineValue());
+            preparedStatement.setDouble(1, librarian.getSalary());
             preparedStatement.setString(2, id.toString());
 
             preparedStatement.executeUpdate();
@@ -79,7 +78,7 @@ public class FineRepositoryImpl implements FineRepository {
     @Override
     public void deleteById(UUID id) {
 
-        String deleteSql = "DELETE FROM Fine WHERE id=?";
+        String deleteSql = "DELETE FROM Librarian WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(deleteSql)) {
@@ -94,16 +93,16 @@ public class FineRepositoryImpl implements FineRepository {
     }
 
     @Override
-    public List<Fine> getAll() {
+    public List<Librarian> getAll() {
 
-        String selectSql = "SELECT * FROM Fine";
+        String selectSql = "SELECT * FROM Librarian";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            return fineMapper.mapToFineList(resultSet);
+            return librarianMapper.mapToLibrarianList(resultSet);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,8 +112,10 @@ public class FineRepositoryImpl implements FineRepository {
     }
 
     @Override
-    public void addAllFromGivenList(List<Fine> fines) {
+    public void addAllFromGivenList(List<Librarian> librarians) {
 
-        fines.forEach(this::addNewObject);
+        librarians.forEach(this::addNewObject);
     }
+
+
 }

@@ -9,6 +9,7 @@ import ro.pao.model.enums.Section;
 import ro.pao.model.enums.Status;
 import ro.pao.repository.impl.*;
 import ro.pao.service.*;
+import ro.pao.threads.FineCalculator;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ public class Menu {
     private final FineService fineService = new FineServiceImpl(new FineRepositoryImpl());
     private final LoanService loanService = new LoanServiceImpl(new LoanRepositoryImpl());
     private final MemberService memberService = new MemberServiceImpl(new MemberRepositoryImpl());
+    private final LibrarianService librarianService = new LibrarianServiceImpl(new LibrarianRepositoryImpl());
 
 
     public static Menu getInstance() {
@@ -500,93 +502,131 @@ public class Menu {
 
     }
 
-//    public void introLoan() throws SQLException {
-//
-//        String intro = "************************** DEMO FOR THE LOAN SERVICE INTERFACE **************************\n";
-//
-//        System.out.println(intro);
-//
-//        Librarian issuer = Librarian.builder()
-//                .id(UUID.randomUUID())
-//                .build();
-//
-//        Librarian receiver = Librarian.builder()
-//                .id(UUID.randomUUID())
-//                .build();
-//
-//        Loan loan = Loan.builder()
-//                .id(UUID.randomUUID())
-//                .id_issuer(issuer.getId())
-//                .id_receiver(receiver.getId())
-//                .id_member(memberService.getByName("Marin Luca").get().getId())
-//                .id_copy(copyService.getByTitle("King of scars").get().getId())
-//                .build();
-//
-//        loanService.addOnlyOne(loan);
-//
-//
-//        System.out.println("\n========== UPDATE LOAN METHOD ==========\n");
-//
-//        System.out.println("\n BEFORE \n");
-//
-//        System.out.println(loan);
-//
-//        Loan loan1 = Loan.builder()
-//                .id_member(memberService.getByName("Vodita Lidia").get().getId())
-//                .build();
-//
-//        loanService.editById(loan.getId(), loan1);
-//
-//        System.out.println("\n AFTER \n");
-//
-//        System.out.println(loanService.getById(loan.getId()).get());
-//
-//        System.out.println("\n=======================================\n");
-//
-//
-//        List<Loan> loans = List.of(
-//                Loan.builder()
-//                        .id(UUID.randomUUID())
-//                        .id_issuer(issuer.getId())
-//                        .id_receiver(receiver.getId())
-//                        .id_member(memberService.getByName("Popescu Diana").get().getId())
-//                        .id_copy(copyService.getByTitle("Six of crows").get().getId())
-//                        .build(),
-//
-//                Loan.builder()
-//                        .id(UUID.randomUUID())
-//                        .id_issuer(issuer.getId())
-//                        .id_receiver(receiver.getId())
-//                        .id_member(memberService.getByName("Marin Luca").get().getId())
-//                        .id_copy(copyService.getByTitle("Shadow and Bone").get().getId())
-//                        .build()
-//        );
-//
-//        loanService.addAllFromGivenList(loans);
-//
-//        System.out.println("\n========== ALL LOANS FROM DATABASE ==========\n");
-//
-//        loanService.getAllFromList().forEach(System.out::println);
-//
-//
-//        System.out.println("\n========== REMOVE LOAN METHOD ==========\n");
-//        System.out.println("\n BEFORE \n");
-//
-//        loanService.getAllFromList().forEach(System.out::println);
-//
-//        System.out.println("\n AFTER \n");
-//
-//        loanService.removeById(loan.getId());
-//
-//        loanService.getAllFromList().forEach(System.out::println);
-//
-//        System.out.println("\n=======================================\n");
-//
-//
-//        System.out.println("************************** END OF DEMO **************************\n");
-//
-//
-//    }
+    public void introLoan() throws SQLException, ObjectNotFound {
+
+        String intro = "************************** DEMO FOR THE LOAN SERVICE INTERFACE **************************\n";
+
+        System.out.println(intro);
+
+        Librarian issuer = Librarian.builder()
+                .id(UUID.randomUUID())
+                .name("Maria Neagu")
+                .salary(2500.0)
+                .build();
+
+        Librarian receiver = Librarian.builder()
+                .id(UUID.randomUUID())
+                .name("Ana Pirvu")
+                .salary(2600.0)
+                .build();
+
+        librarianService.addOnlyOne(issuer);
+        librarianService.addOnlyOne(receiver);
+
+
+        Loan loan = Loan.builder()
+                .id(UUID.randomUUID())
+                .id_issuer(librarianService.getById(issuer.getId()).get().getId())
+                .id_receiver(librarianService.getById(receiver.getId()).get().getId())
+                .id_member(memberService.getByName("Marin Luca").get().getId())
+                .id_copy(copyService.getByTitle("King of scars").get().getId())
+                .build();
+
+        loanService.addOnlyOne(loan);
+
+
+        System.out.println("\n========== UPDATE LOAN METHOD ==========\n");
+
+        System.out.println("\n BEFORE \n");
+
+        System.out.println(loan);
+
+        Loan loan1 = Loan.builder()
+                .id_member(memberService.getByName("Vodita Lidia").get().getId())
+                .build();
+
+        loanService.editById(loan.getId(), loan1);
+
+        System.out.println("\n AFTER \n");
+
+        System.out.println(loanService.getById(loan.getId()).get());
+
+        System.out.println("\n=======================================\n");
+
+
+        List<Loan> loans = List.of(
+                Loan.builder()
+                        .id(UUID.randomUUID())
+                        .id_issuer(librarianService.getById(issuer.getId()).get().getId())
+                        .id_receiver(librarianService.getById(receiver.getId()).get().getId())
+                        .id_member(memberService.getByName("Popescu Diana").get().getId())
+                        .id_copy(copyService.getByTitle("Six of crows").get().getId())
+                        .build(),
+
+                Loan.builder()
+                        .id(UUID.randomUUID())
+                        .id_issuer(librarianService.getById(issuer.getId()).get().getId())
+                        .id_receiver(librarianService.getById(receiver.getId()).get().getId())
+                        .id_member(memberService.getByName("Marin Luca").get().getId())
+                        .id_copy(copyService.getByTitle("Shadow and Bone").get().getId())
+                        .build()
+        );
+
+        loanService.addAllFromGivenList(loans);
+
+        System.out.println("\n========== ALL LOANS FROM DATABASE ==========\n");
+
+        loanService.getAllFromList().forEach(System.out::println);
+
+
+        System.out.println("\n========== REMOVE LOAN METHOD ==========\n");
+        System.out.println("\n BEFORE \n");
+
+        loanService.getAllFromList().forEach(System.out::println);
+
+        System.out.println("\n AFTER \n");
+
+        loanService.removeById(loan.getId());
+
+        loanService.getAllFromList().forEach(System.out::println);
+
+        System.out.println("\n=======================================\n");
+
+
+        System.out.println("************************** END OF DEMO **************************\n");
+
+
+        List<Loan> loans1 = List.of(
+                Loan.builder()
+                        .id(UUID.randomUUID())
+                        .id_issuer(librarianService.getById(issuer.getId()).get().getId())
+                        .id_receiver(librarianService.getById(receiver.getId()).get().getId())
+                        .id_member(memberService.getByName("Vodita Lidia").get().getId())
+                        .id_copy(copyService.getByTitle("King of scars").get().getId())
+                        .build(),
+
+                Loan.builder()
+                        .id(UUID.randomUUID())
+                        .id_issuer(librarianService.getById(issuer.getId()).get().getId())
+                        .id_receiver(librarianService.getById(receiver.getId()).get().getId())
+                        .id_member(memberService.getByName("Vodita Lidia").get().getId())
+                        .id_copy(copyService.getByTitle("King of scars").get().getId())
+                        .build()
+        );
+
+        loanService.addAllFromGivenList(loans1);
+
+    }
+
+    public void Threads() throws SQLException, ObjectNotFound {
+
+        UUID member_id = memberService.getByName("Vodita Lidia").get().getId();
+
+        FineCalculator fineCalculator = new FineCalculator();
+        double totalFine = fineCalculator.calculateFine(member_id);
+
+        System.out.println("Total fine for the member Vodita Lidia: " + totalFine);
+    }
 
 //    public void httpClient() {
 //
