@@ -53,7 +53,7 @@ public non-sealed class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Optional<Member> getByName(String name) throws SQLException, ObjectNotFound {
+    public Optional<Member> getByName(String name) throws SQLException {
 
         Optional<Member> member = Optional.empty();
 

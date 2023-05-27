@@ -42,7 +42,7 @@ public class Requests {
 
             var body = httpResponse.body();
 
-            System.out.println(body);
+            //System.out.println(body);
 
             JsonNode books = objectMapper.readTree(body);
 

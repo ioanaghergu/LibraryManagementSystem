@@ -37,7 +37,6 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
             return author;
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

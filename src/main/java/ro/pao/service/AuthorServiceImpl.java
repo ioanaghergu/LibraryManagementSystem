@@ -44,6 +44,7 @@ public non-sealed class AuthorServiceImpl implements AuthorService {
             author = authorRepository.getById(id);
 
             LogRecord record = new LogRecord(Level.INFO, "Retrieved author by ID: " + id);
+
             CSV_WRITER.writeLine(CSV_FORMATTER.format(record), auditPath);
 
         } catch (Exception e) {
@@ -55,7 +56,7 @@ public non-sealed class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Optional<Author> getByName(String name) throws SQLException, ObjectNotFound {
+    public Optional<Author> getByName(String name) throws SQLException {
 
         Optional<Author> author = Optional.empty();
 

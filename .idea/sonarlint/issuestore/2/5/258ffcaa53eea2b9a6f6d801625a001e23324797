@@ -1,6 +1,0 @@
-
-{
-java:S2142="^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾8Ÿ¥…1
-]
-java:S1075#"ARefactor your code to get this URI from a customizable parameter.(ëòŠ8 ¥…1
-T	java:S106-"9Replace this use of System.out or System.err by a logger.(ŠÄë8¡¥…1

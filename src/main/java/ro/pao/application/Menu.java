@@ -32,7 +32,7 @@ public class Menu {
         return (INSTANCE == null ? new Menu() : INSTANCE);
     }
 
-    public void introAuthor() throws SQLException, ObjectNotFound {
+    public void introAuthor() throws SQLException {
 
         String intro = "************************** DEMO FOR THE AUTHOR SERVICE INTERFACE **************************\n";
 
@@ -118,7 +118,7 @@ public class Menu {
 
     }
 
-    public void introBook() throws SQLException, ObjectNotFound {
+    public void introBook() throws SQLException  {
 
         String intro = "************************** DEMO FOR THE BOOK SERVICE INTERFACE **************************\n";
 
@@ -246,7 +246,7 @@ public class Menu {
 
     }
 
-    public void introBookCopy() throws SQLException, ObjectNotFound {
+    public void introBookCopy() throws SQLException {
 
         String intro = "************************** DEMO FOR THE BOOK COPY SERVICE INTERFACE **************************\n";
 
@@ -348,7 +348,7 @@ public class Menu {
 
     }
 
-    public void introMember() throws SQLException, ObjectNotFound {
+    public void introMember() throws SQLException {
 
         String intro = "************************** DEMO FOR THE MEMBER SERVICE INTERFACE **************************\n";
 
@@ -428,7 +428,7 @@ public class Menu {
 
     }
 
-    public void introFine() throws SQLException, ObjectNotFound {
+    public void introFine() throws SQLException {
 
         String intro = "************************** DEMO FOR THE FINE SERVICE INTERFACE **************************\n";
 
@@ -502,7 +502,7 @@ public class Menu {
 
     }
 
-    public void introLoan() throws SQLException, ObjectNotFound {
+    public void introLoan() throws SQLException {
 
         String intro = "************************** DEMO FOR THE LOAN SERVICE INTERFACE **************************\n";
 
@@ -618,7 +618,7 @@ public class Menu {
 
     }
 
-    public void Threads() throws SQLException, ObjectNotFound {
+    public void Threads() throws SQLException {
 
         UUID member_id = memberService.getByName("Vodita Lidia").get().getId();
 

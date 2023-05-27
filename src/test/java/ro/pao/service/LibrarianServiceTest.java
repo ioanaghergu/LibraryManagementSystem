@@ -26,10 +26,12 @@ public class LibrarianServiceTest {
                 .build();
 
         LibrarianRepository librarianRepository = mock(LibrarianRepositoryImpl.class);
-        LibrarianService librarianService = mock(LibrarianServiceImpl.class);
+        LibrarianService librarianService = new LibrarianServiceImpl(librarianRepository);
 
-        when(librarianRepository.getById(any())).thenReturn(Optional.of(librarian));
+        when(librarianRepository.getById(librarian.getId())).thenReturn(Optional.of(librarian));
 
-        assertEquals(Optional.of(librarian), librarianService.getById(any()));
+        librarianService.addOnlyOne(librarian);
+
+        assertEquals(Optional.of(librarian), librarianService.getById(librarian.getId()));
     }
 }

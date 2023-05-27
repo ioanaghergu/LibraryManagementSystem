@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public sealed interface AuthorService extends Service<Author> permits AuthorServiceImpl {
 
-    Optional<Author> getByName(String name) throws SQLException, ObjectNotFound;
+    Optional<Author> getByName(String name) throws SQLException ;
 }
