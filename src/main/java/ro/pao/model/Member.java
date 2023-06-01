@@ -2,7 +2,7 @@ package ro.pao.model;
 
 import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.GenericInfo;
-import ro.pao.model.abstracts.Location;
+import ro.pao.model.Location;
 import ro.pao.model.enums.MemberType;
 import lombok.*;
 
@@ -25,9 +25,9 @@ public class Member extends GenericInfo {
     @Override
     public String toString() {
         return getClass().getSimpleName() + super.toString() + "\n" +
-                "Member Type = " + memberType + "\n" +
-                "Borrowed Books = " + borrowedBooks + "\n" +
-                "Returned Books = " + returnedBooks + "] \n";
+
+                "Member Type = " + memberType + "\n";
     }
 
 }
+

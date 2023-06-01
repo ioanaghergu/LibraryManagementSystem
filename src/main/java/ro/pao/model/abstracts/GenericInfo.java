@@ -2,6 +2,7 @@ package ro.pao.model.abstracts;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import ro.pao.model.Location;
 
 import java.util.UUID;
 
@@ -9,7 +10,6 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @EqualsAndHashCode
 @SuperBuilder(toBuilder = true)
 
@@ -23,17 +23,10 @@ public abstract class GenericInfo {
     private String phoneNumber;
     private Location adress;
 
-    protected GenericInfo(String country, String city, String street, int apartment, int streetNumber) {
-        this.adress.setCountry(country);
-        this.adress.setCity(city);
-        this.adress.setStreet(street);
-        this.adress.setApartment(apartment);
-        this.adress.setStreetNumber(streetNumber);
-    }
+
 
     @Override
     public String toString() {
         return "[Name = " + name + "]";
     }
-
 }

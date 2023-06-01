@@ -4,4 +4,4 @@ public enum MemberType {
 
     STANDARD,
     VIP
-}
+  }

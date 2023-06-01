@@ -2,26 +2,14 @@ package ro.pao.service;
 
 import ro.pao.model.Book;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-public interface BookService {
+public sealed interface BookService extends Service<Book> permits BookServiceImpl {
 
-    Optional<Book> getByID(UUID id);
+    Optional<Book> getByTitle(String Title) throws SQLException;
 
-    Optional<Book> getByTitle(String title);
-
-    List<Book> getAllFromList();
-
-    List<Book> getAllByTitle(String title);
-
-    void addOnlyOne(Book book);
-
-    void removeBookById(UUID id);
-
-    void editBookById(UUID id, Book book);
-
-    void addAllFromGivenList(List<Book> bookList);
+    public void addFromJson(Book book);
 
 }
