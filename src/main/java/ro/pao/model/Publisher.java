@@ -3,6 +3,7 @@ package ro.pao.model;
 import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.GenericInfo;
 import ro.pao.model.Location;
+
 import lombok.*;
 
 import java.util.List;

@@ -3,6 +3,7 @@ package ro.pao;
 import ro.pao.application.Menu;
 
 import java.sql.SQLException;
+
 import java.util.Scanner;
 
 public class Main {
@@ -29,6 +30,7 @@ public class Main {
 
             menu.Threads();
 
+
             if ("exit".equals(scanner.next())) {
                 break;
             }
@@ -36,3 +38,4 @@ public class Main {
 
     }
 }
+

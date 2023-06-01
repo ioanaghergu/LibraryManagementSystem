@@ -6,6 +6,7 @@ import ro.pao.model.enums.Section;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Setter
@@ -29,6 +30,7 @@ public class Book {
     @Override
     public String toString() {
         return getClass().getSimpleName() + "[Title = " + title + "]";
+
     }
 
 }

@@ -19,11 +19,15 @@ import java.util.List;
 public class Member extends GenericInfo {
     private MemberType memberType;
     private Location adress;
+    private List<BookCopy> borrowedBooks;
+    private List<BookCopy> returnedBooks;
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + super.toString() + "\n" +
+
                 "Member Type = " + memberType + "\n";
     }
 
 }
+

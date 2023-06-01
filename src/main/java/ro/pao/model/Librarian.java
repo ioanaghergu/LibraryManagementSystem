@@ -3,7 +3,6 @@ package ro.pao.model;
 import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.GenericInfo;
 import lombok.*;
-
 import java.util.UUID;
 
 @Setter
