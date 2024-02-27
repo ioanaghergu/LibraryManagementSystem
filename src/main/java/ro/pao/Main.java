@@ -2,13 +2,11 @@ package ro.pao;
 
 import ro.pao.application.Menu;
 
-import java.sql.SQLException;
-
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
 
         Scanner scanner = new Scanner(System.in);
@@ -16,20 +14,9 @@ public class Main {
         while (true) {
             Menu menu = Menu.getInstance();
 
-            menu.introAuthor();
-
-            menu.introBook();
-
-            menu.introBookCopy();
-
             menu.introMember();
 
-            menu.introFine();
-
-            menu.introLoan();
-
-            menu.Threads();
-
+            menu.introBook();
 
             if ("exit".equals(scanner.next())) {
                 break;
@@ -38,4 +25,3 @@ public class Main {
 
     }
 }
-

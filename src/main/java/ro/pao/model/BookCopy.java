@@ -16,7 +16,7 @@ import java.util.UUID;
 @SuperBuilder(toBuilder = true)
 
 public class BookCopy extends Book {
-    private UUID id;
+    private UUID copyNumber;
     private Status status;
     private LocalDate issueDate;
     private LocalDate dueDate;
@@ -24,10 +24,7 @@ public class BookCopy extends Book {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "[Title = " + getTitle() +  "\n" +
-                                              "Status = " + status  + "]";
+        return "Title = " + getTitle();
     }
 
 }
-
-

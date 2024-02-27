@@ -1,11 +1,22 @@
 package ro.pao.service;
 
-import ro.pao.exceptions.ObjectNotFound;
 import ro.pao.model.Member;
 
-import java.sql.SQLException;
+import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
-public sealed interface MemberService extends Service<Member> permits MemberServiceImpl {
-    Optional<Member> getByName(String name) throws SQLException;
+public interface MemberService {
+
+    Optional<Member> getByID(UUID id);
+
+    Optional<Member> getByName(String name);
+
+    Map<UUID, Member> getAllFromMap();
+
+    void addOnlyOne(Member member);
+
+    void removeMemberById(UUID id);
+
+    void editMemberById(UUID id, Member newMember);
 }

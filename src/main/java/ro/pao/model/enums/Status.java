@@ -5,5 +5,4 @@ public enum Status {
     AVAILABLE,
     DAMAGED,
     BORROWED
-      
-  }
+}

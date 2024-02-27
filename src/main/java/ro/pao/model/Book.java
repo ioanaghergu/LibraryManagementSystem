@@ -13,24 +13,35 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @EqualsAndHashCode
-//@ToString
 @SuperBuilder(toBuilder = true)
 
-public class Book {
+public class Book implements Comparable<Book> {
 
     private UUID id;
-    private UUID id_author;
-    private UUID id_publisher;
     private String title;
     private Genre genre;
     private Section section;
+    private Publisher publisher;
     private LocalDate publicationDate;
+    private List<Author> authors;
+    private Integer copies;
+
+    @Override
+    public int compareTo(Book book) {
+        return publicationDate.compareTo(book.publicationDate);
+    }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "[Title = " + title + "]";
-
+        return getClass().getSimpleName() + "[ Title = " + title + "\n" +
+                "Genre = " + genre + "\n" +
+                "Section = " + section + "\n" +
+                "Publisher = " + publisher + "\n" +
+                "Publication Date = " + publicationDate + "\n" +
+                "Number of copies = " + copies + "\n" +
+                "List of authors = " + authors + "] \n";
     }
 
 }
